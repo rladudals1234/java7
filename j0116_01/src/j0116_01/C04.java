@@ -22,7 +22,7 @@ public class C04 {
 		System.out.printf("숫자를 입력하세요.>> ");
 		int num = scan.nextInt();	//정수형 타입 값을 받음.
 		System.out.println("입력숫자 : "+num);
-		
+		//test
 	}
 
 }
