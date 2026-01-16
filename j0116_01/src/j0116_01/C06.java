@@ -110,7 +110,7 @@ public class C06 {
 		b=a;
 		System.out.println("a:"+a);
 		System.out.println("b:"+b);
-		
+		//test
 		
 	}
 
