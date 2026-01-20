@@ -138,10 +138,22 @@ public class C06 {
 		}else {
 			System.out.println("문자위치:"+num.indexOf("7"));
 		}
+		
 		//반복문, indexOf메소드를 이용하여 7이 몇개 사용되었는지 출력하시오.
-		for(int i=0; i<num.length();i++) {
-			
+		int cnt = 0;
+		int pos = num.indexOf("7");
+		if(pos!=-1) {
+			++cnt;
 		}
+		for(int i=0; i<num.length();i++) {
+			pos = num.indexOf("7",pos+1);
+			if(num.indexOf("7")!=pos) {
+				i=pos;
+				++cnt;
+			}
+		}
+		System.out.println("pos개수 : "+cnt);
+		
 		
 		// contains : 해당문자열이 있는지 확인하는 메소드
 		if(num.contains("7")) {
