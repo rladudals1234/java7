@@ -9,6 +9,7 @@ public class C06 {
 		int[] num = new int[45];
 		int[] random = new int[6];
 		int[] input = new int[6];
+		int[] lotto = new int[6];
 		int count = 0;
 		// 1-45 사이의 랜덤숫자 6개를 입력 후 출력하시오.		
 		// 1. 순차번호 넣기
@@ -38,11 +39,19 @@ public class C06 {
 		for(int i=0;i<6;i++) {
 			for(int j=0;j<6;j++) {
 				if(input[i]==random[j]) {
+					lotto[i] = input[i];
 					count++;
 				}
 			}
 		}
 		// 모두 출력
+		System.out.println("로또숫자 : "+Arrays.toString(random));
+		System.out.println("입력한 로또숫자 : "+Arrays.toString(input));
+		System.out.printf("맞힌 로또숫자 : ");
+		for(int i=0;i<=count;i++) {
+			System.out.print(lotto[i]+" ");
+		}
+		System.out.printf("맞힌 숫자의 개수는 %d개입니다.",count);
 		scanner.close();
 	}
 
