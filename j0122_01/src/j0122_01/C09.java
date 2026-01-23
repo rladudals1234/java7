@@ -15,6 +15,15 @@ public class C09 {
 		score[2] = scanner.nextInt();
 		return score;
 	}
+	
+	static void stuInput(int[] score) {
+		System.out.print("국어점수를 입력하세요.>> ");
+		score[0] = scanner.nextInt();
+		System.out.print("영어점수를 입력하세요.>> ");
+		score[1] = scanner.nextInt();
+		System.out.print("수학점수를 입력하세요.>> ");
+		score[2] = scanner.nextInt();
+	}
 	public static void main(String[] args) {
 		//객체선언
 		//MainMethod m = new MainMethod();
@@ -23,7 +32,11 @@ public class C09 {
 		//m.stuInput(stuArr);
 		//m.stuOutput(stuArr);
 		
-		int[] score = stuInput();
+		//int[] score = stuInput();
+		
+		int[] score = new int[3];
+		stuInput(score);
+		
 		System.out.printf("국어점수:%d,영어점수:%d,수학점수:%d\n",score[0],score[1],score[2]);
 	}
 
