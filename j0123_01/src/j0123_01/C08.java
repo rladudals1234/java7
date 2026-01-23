@@ -21,7 +21,7 @@ public class C08 {
 			System.out.println("4.학생검색");
 			System.out.println("0.종료");
 			System.out.println("----------------------------------------");		
-			System.out.println("원하는 번호를 입력하세요.>> ");
+			System.out.print("원하는 번호를 입력하세요.>> ");
 			choice = scanner.nextInt();
 			switch(choice) {
 				case 1:
