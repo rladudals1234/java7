@@ -38,4 +38,6 @@ public class Stuscore {
 		int total = kor+eng+math;
 		this.avg = total/(double)3.0;
 	}
+	
+	
 }

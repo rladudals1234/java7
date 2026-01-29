@@ -1,12 +1,10 @@
-package j0128_02;
+package j0129_01;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class StuDeck {
 	Scanner scan = new Scanner(System.in);
-	//객체컬렉션 - 객체를 담을 수 있는 배열
-	//add,get,remove,size(),isEmpty()
 	ArrayList<Stuscore> list = new ArrayList<Stuscore>();
 	int no,kor,eng,math,total;
 	int[] score = new int[3];
@@ -34,10 +32,9 @@ public class StuDeck {
 		System.out.print("원하는 번호를 입력하세요.>>");
 	}
 	
-	
-	//성적입력
+	//학생성적입력
 	void stuInput() {
-		System.out.printf("%d번 학생이름을 입력하세요.(0.이전페이지 이동)>> ",(Stuscore.count+1));	 //list.size로 할 경우 삭제하면 번호는 그대로라 중복될 수 있음
+		System.out.printf("%d번 학생이름을 입력하세요.(0.이전페이지 이동)>> ",(Stuscore.count+1));
 		name = scan.next();
 		if(name.equals("0")) {
 			return;
@@ -59,7 +56,6 @@ public class StuDeck {
 		System.out.println();
 	}
 	
-	//성적출력
 	void stuOutput() {
 		for(int i=0;i<title.length;i++) {
 			System.out.printf("%s\t",title[i]);
@@ -71,7 +67,6 @@ public class StuDeck {
 		System.out.println();
 	}
 	
-	//성적수정
 	void stuUpdate() {
 		int temp = 0;	//검색확인 변수
 		System.out.print("수정할 학생이름을 입력하세요.>> ");
@@ -110,7 +105,6 @@ public class StuDeck {
 		}
 	}
 	
-	//성적삭제
 	void stuDelete() {
 		int temp = 0;	//검색확인 변수
 		System.out.print("삭제할 학생이름을 입력하세요.>> ");
@@ -135,7 +129,6 @@ public class StuDeck {
 		}
 	}
 	
-	//학생검색
 	void stuSearch() {
 		int temp = 0;	//검색확인 변수
 		System.out.print("수정할 학생이름을 입력하세요.>> ");
