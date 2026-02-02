@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -31,8 +32,9 @@ public class StuDeck3 {
 		System.out.println("4. 성적삭제");
 		System.out.println("5. 성적검색");
 		System.out.println("6. 성적정렬");
-		System.out.println("7. 파일저장");
+		System.out.println("7. 번호재정렬");
 		System.out.println("8. 파일불러오기");
+		System.out.println("9. 파일저장");
 		System.out.println("0. 프로그램종료");
 		System.out.println("---------------------------------");
 		System.out.print("원하는 번호를 입력하세요.>>");
@@ -71,30 +73,30 @@ public class StuDeck3 {
 		if(name.equals("0"))return;
 		for(int i=0;i<list.size();i++) {
 			if(name.equals(list.get(i).getName())) {
+				Stuscore s = list.get(i);
 				temp=1;
 				for(int j=0;j<3;j++) {
 					System.out.printf("%d. %s점수 수정\n",(j+1),title[j+2]);
 				}
-				System.out.print("수정할 번호를 입력하세요.>>");
+				System.out.printf("%d. 수정취소\n",0);
+				System.out.print("수정할 번호를 입력하세요.>> (0.이전페이지 이동) ");
 				choice = scan.nextInt();
+				if(choice==0)return;
 				System.out.printf("%s점수를 입력하세요.>> ",title[choice+1]);
+				int score = scan.nextInt();
 				switch (choice) {
 					case 1:
-						kor = scan.nextInt();
-						list.get(i).setKor(kor);
+						s.setKor(score);
 						break;
 					case 2:
-						eng = scan.nextInt();
-						list.get(i).setEng(eng);
+						s.setEng(score);
 						break;
 					case 3:
-						math = scan.nextInt();
-						list.get(i).setMath(math);
-						break;
-					default:
+						s.setMath(score);
 						break;
 				}
-				System.out.printf("%s학생의 %s성적이 수정되었습니다.",name,title[choice+1]);
+				System.out.printf("%s학생의 %s성적이 %d점으로 수정되었습니다.",name,title[choice+1],score);
+				System.out.println();
 				break;
 			}
 		}
@@ -132,47 +134,102 @@ public class StuDeck3 {
 	//5. 성적검색
 	void stuSearch() {
 		temp = 0;	//검색확인 변수
-		System.out.print("검색할 학생이름을 입력하세요.>> (0.이전페이지 이동) ");
-		name = scan.next();
-		if(name.equals("0"))return;
-		titlePrint();
-		for(int i=0;i<list.size();i++) {
-			if(list.get(i).getName().contains(name)) {
-				temp=1;
-				System.out.printf("%d\t%s\t%d\t%d\t%d\t%d\t%.2f\n",list.get(i).getNo(),list.get(i).getName(),list.get(i).getKor(),list.get(i).getEng(),list.get(i).getMath(),list.get(i).getTotal(),list.get(i).getAvg());
-				System.out.println();
-			}
-		}
-		if(temp==0) {
-			System.out.println("검색하려는 학생이 없습니다.");
-			System.out.println();
+		System.out.println("[ 학생검색 ]");
+		System.out.println("1. 이름검색");
+		System.out.println("2. 점수검색");
+		System.out.println("----------------------------------------------");
+		System.out.print("원하는 번호를 입력하세요.>> (0.이전페이지 이동) ");
+		choice = scan.nextInt();
+		switch(choice) {
+			case 1:
+				System.out.print("검색할 학생이름을 입력하세요.>> (0.이전페이지 이동) ");
+				name = scan.next();
+				if(name.equals("0"))return;
+				titlePrint();
+				//ArrayList<Stuscore> slist = new ArrayList<Stuscore>(list);		//매개변수로 넘기는 방식(오버로딩으로 추가)
+				for(int i=0;i<list.size();i++) {
+					Stuscore s = list.get(i);
+					//equals:동일한 이름, contains:포함되어 있는 이름
+					if(s.getName().contains(name)) {
+					//if(s.getTotal() >= 70) {	//70점 이상인 학생
+						temp=1;
+						System.out.printf("%d\t%s\t%d\t%d\t%d\t%d\t%.2f\n",s.getNo(),s.getName(),s.getKor(),s.getEng(),s.getMath(),s.getTotal(),s.getAvg());
+						System.out.println();
+						//slist.add(s);			//매개변수로 넘기는 방식(오버로딩으로 추가) 위에 소스는 주석처리
+					}
+				}
+				if(temp==0) {
+					System.out.println("검색하려는 학생이 없습니다.");
+					System.out.println();
+				}/*else {
+					stuOutput(slist);			//매개변수로 넘기는 방식(오버로딩으로 추가)
+				}*/
+				break;
+			case 2:
+				/*System.out.print("검색할 학생점수를 입력하세요.>> (0.이전페이지 이동) ");
+				choice = scan.nextInt();
+				System.out.print("검색할 번호를 입력하세요.>>");
+				for(int j=0;j<3;j++) {
+					System.out.printf("%d. %s점수 검색\n",(j+1),title[j+2]);
+				}
+				choice = scan.nextInt();
+				System.out.printf("%s점수를 입력하세요.>> ",title[choice+1]);
+				switch (choice) {
+					case 1:
+						kor = scan.nextInt();
+						break;
+					case 2:
+						eng = scan.nextInt();
+						break;
+					case 3:
+						math = scan.nextInt();
+						break;
+					default:
+						break;
+				}*/
+				break;
+			case 0:
+				return;
 		}
 	}
 	
-	//6. 성적정렬(번호만 다시 순서대로 - 현재 정렬기준으로 보여주진 않음)
+	//6. 성적정렬
+	void stuSort() {
+		System.out.println("[ 성적정렬 ]");
+		System.out.println("1. 합계순 역순정렬");
+		System.out.println("2. 이름순 순차정렬");
+		System.out.println("----------------------------------------------");
+		choice = scan.nextInt();
+		switch (choice) {
+			case 1:	//합계순 역순정렬
+				list.sort(new Comparator<Stuscore>() {
+					@Override
+					public int compare(Stuscore o1, Stuscore o2) {
+						return o2.getTotal()-o1.getTotal();
+					}
+				});
+				break;
+			case 2:		//이름순 순차정렬
+				list.sort(new Comparator<Stuscore>() {
+					@Override
+					public int compare(Stuscore o1, Stuscore o2) {
+						return o1.getName().compareTo(o2.getName());
+					}
+				});
+				break;
+		}
+		System.out.println("정렬되었습니다.");
+		System.out.println();
+	}
+	
+	//7. 번호재정렬
 	void stuNoSort() {
 		for(int i=0;i<list.size();i++) {
 			list.get(i).setNo(i+1);
 		}
 		Stuscore.count = list.size();
-		System.out.println("번호 정렬되었습니다.");
+		System.out.println("번호 재정렬되었습니다.");
 		System.out.println();
-	}
-	
-	//7. 파일저장
-	void fileSave() {
-		try {
-			FileWriter fw = new FileWriter(filePath);
-			BufferedWriter bw = new BufferedWriter(fw);
-			Iterator<Stuscore> it = list.iterator();
-			while(it.hasNext()) {
-				Stuscore s = it.next();
-				String txt = String.format("%d,%s,%d,%d,%d,%d,%.2f\r\n", s.getNo(),s.getName(),s.getKor(),s.getEng(),s.getMath(),s.getTotal(),s.getAvg());
-				bw.write(txt);
-			}
-			bw.close();
-			fw.close();
-		} catch (Exception e) {e.printStackTrace();}
 	}
 	
 	//8. 파일불러오기
@@ -191,6 +248,28 @@ public class StuDeck3 {
 			fr.close();
 		} catch (Exception e) {e.printStackTrace();}
 		System.out.println("파일 불러오기 완료!");
+	}
+	
+	//9. 파일저장
+	void fileSave() {
+		try {
+			FileWriter fw = new FileWriter(filePath);
+			BufferedWriter bw = new BufferedWriter(fw);
+			for(int i=0;i<list.size();i++) {
+				Stuscore s = list.get(i);
+				String txt = String.format("%d,%s,%d,%d,%d,%d,%.2f\r\n", s.getNo(),s.getName(),s.getKor(),s.getEng(),s.getMath(),s.getTotal(),s.getAvg());
+				bw.write(txt);
+			}
+			/*Iterator<Stuscore> it = list.iterator();
+			while(it.hasNext()) {
+				Stuscore s = it.next();
+				String txt = String.format("%d,%s,%d,%d,%d,%d,%.2f\r\n", s.getNo(),s.getName(),s.getKor(),s.getEng(),s.getMath(),s.getTotal(),s.getAvg());
+				bw.write(txt);
+			}*/
+			bw.close();
+			fw.close();
+			System.out.println("파일 저장하기 완료");
+		} catch (Exception e) {e.printStackTrace();}
 	}
 	
 	//타이틀 출력

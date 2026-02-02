@@ -27,13 +27,17 @@ public class StuMain3 {
 					s.stuSearch();
 					break;
 				case 6:
-					s.stuNoSort();
+					s.stuSort();
+					s.stuOutput();
 					break;
 				case 7:
-					s.fileSave();
+					s.stuNoSort();
 					break;
 				case 8:
 					s.fileOpen();
+					break;
+				case 9:
+					s.fileSave();
 					break;
 				case 0:
 					System.out.println("[ 프로그램 종료 ]");
